@@ -12,15 +12,11 @@ Structural similarity index measures (SSIM) are calculated on randomly selected 
 
 **Image classification**
 
-__Model training__
+*Model training*
 
-Two custom CNN models are initially trained on the X-ray image data over five epochs, each comprised of twelve 2D-convolution layers, five max-pooling layers, and a softmax activation layer — one with Adam optimization and a batch size of 64, and another with stochastic gradient descent (SGD) optimization and a batch size of 128. The latter CNN model additionally includes dropout layers to further minimize overfitting.
+Two custom CNN models are initially trained on the X-ray image data over five epochs, each comprised of twelve 2D-convolution layers, five max-pooling layers, and a softmax activation layer — one with Adam optimization and a batch size of 64, and another with stochastic gradient descent (SGD) optimization and a batch size of 128. The latter CNN model additionally includes dropout layers to further minimize overfitting. Two transfer learning models, VGG19 and ResNet50 (pre-trained on ImageNet data), are subsequently fitted to the X-ray image data over five epochs. Both models rely on Adam optimization, and are fine-tuned with base layers unfrozen before being refitted to the X-ray image data. Finally, a sparse CNN model with only five 2D-convolution layers, four max-pooling layers, and a softmax activation layer is trained over ten epochs on the X-ray image data.
 
-Two transfer learning models, VGG19 and ResNet50 (pre-trained on ImageNet data), are subsequently fitted to the X-ray image data over five epochs. Both models rely on Adam optimization, and are fine-tuned with base layers unfrozen before being refitted to the X-ray image data.
-
-Finally, a sparse CNN model with only five 2D-convolution layers, four max-pooling layers, and a softmax activation layer is trained over ten epochs on the X-ray image data.
-
-__Results__
+*Results*
 
 The sparse CNN model exhibits the highest performance among the five candidate models, with training and validation accuracies of 0.760 and 0.794, respectively. The classification performance reaches only 0.333, an outcome potentially attributable to overfitting and limited generalizability to external data.
 
